@@ -1,0 +1,26 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "omdbInteractiveStarter.js",
+  "dependencies": {
+    "request": "^2.82.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EEPROM01/liri-node-app.git"
+  },
+  "keywords": [
+    "Liri"
+  ],
+  "author": "NPM Sean T.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EEPROM01/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/EEPROM01/liri-node-app#readme"
+}
