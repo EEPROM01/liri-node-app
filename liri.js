@@ -13,7 +13,6 @@ console.log(nodeArgv)
 var  flag = process.argv[2];
 
 var  z = "";
-
 for (var i=3; i<nodeArgv.length; i++){
   if(i>3 && i<nodeArgv.length){
     z = z + "+" + nodeArgv[i];
@@ -71,15 +70,15 @@ function displayTweets(){
 }
 //URL is correct...error on items in array??
 function spotifyQuery(song){
-  spotify.search({ type: 'track', query: song}, function(error, data){
+  spotifyAPI.search({type: 'track', query: 'song'}, function(error, data){
     if(!error){
       for(var i = 0; i < data.tracks.items.length; i++){
-        var songData = data.tracks.items[i];
+        var trackData = data.tracks.items[i];
         console.log("***********************************");
-        console.log("Artist: " + songData.artists[0].name);
-        console.log("Song: " + songData.name);
-        console.log("URL: " + songData.preview_url);
-        console.log("Associated Album: " + songData.album.name);
+        console.log("Artist: " + trackData.artists[0].name);
+        console.log("Track: " + trackData.name);
+        console.log("Track URL: " + trackData.preview_url);
+        console.log("Associated Album: " + trackData.album.name);
         console.log("***********************************");
         
         //Works! appending text log...
@@ -96,13 +95,13 @@ function spotifyQuery(song){
 //This Works.
 function omdb(movie){
   var omdbURL = 'http://www.omdbapi.com/?t=' + movie + '&plot=short&tomatoes=true&apikey=40e9cece';
-
+//request and parse of movie data
   request(omdbURL, function (error, response, body){
     if(!error && response.statusCode == 200){
       var body = JSON.parse(body);
       console.log("");
       console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-      console.log("movie Title: " + body.Title);
+      console.log("Movie Title: " + body.Title);
       console.log("Release Year: " + body.Year);
       console.log("IMdB Rating: " + body.imdbRating);
       console.log("Country: " + body.Country);
@@ -113,7 +112,7 @@ function omdb(movie){
       console.log("Rotten Tomatoes URL: " + body.tomatoURL);
       console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
       //Appening again
-      fs.appendFile('log.txt', "Title: " + body.Title);
+      fs.appendFile('log.txt', "Movie Title: " + body.Title);
       fs.appendFile('log.txt', "Release Year: " + body.Year);
       fs.appendFile('log.txt', "IMdB Rating: " + body.imdbRating);
       fs.appendFile('log.txt', "Country: " + body.Country);
@@ -126,16 +125,13 @@ function omdb(movie){
     } else{
       console.log('Err')
     }
-
+    //Default
     if(movie === "Mr. Nobody"){
       console.log("-----------------------");
       console.log("If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
-      console.log("It's on Netflix!");
-
       //adds text to log.txt
       fs.appendFile('log.txt', "-----------------------");
       fs.appendFile('log.txt', "If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
-      fs.appendFile('log.txt', "It's on Netflix!");
     }
   });
 
