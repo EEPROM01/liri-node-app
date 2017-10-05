@@ -3,8 +3,13 @@
 var keys = require('./keys.js');
 var  request = require('request');
 var twitter = require('twitter');
-var  spotify = require('spotify');
+var Spotify = require('node-spotify-api');
+//taking keys and storing to client
 var  client = new twitter(keys.twitterKeys);
+var spotify = new Spotify({
+  id: `5b310db03b0946eab0798e881aa804e9`,
+  secret: `899e0aed6d344983b6105457191236e0`
+});
 //file system
 var  fs = require('fs');
 
@@ -64,13 +69,13 @@ function displayTweets(){
         console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
       }
     }else{
-      console.log('Error occurred');
+      console.log('Err');
     }
   });
 }
 //URL is correct...error on items in array??
 function spotifyQuery(song){
-  spotifyAPI.search({type: 'track', query: 'song'}, function(error, data){
+  spotify.search({type: 'track', query: 'song'}, function(error, data){
     if(!error){
       for(var i = 0; i < data.tracks.items.length; i++){
         var trackData = data.tracks.items[i];
